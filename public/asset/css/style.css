@@ -1,0 +1,255 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #e4e4e4;
+    font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
+    /* ensure page content starts at the very top */
+    margin: 0;
+    padding: 0;
+}
+
+.container-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007E7A;
+    color: white;
+    padding: 1px 20px;
+}
+
+/* ensure navbar sits flush to the top of the page and becomes sticky on scroll */
+.navbar-header{margin-top:0;padding-top:0;position:sticky;top:0;z-index:9999}
+
+.logo-website{
+    display: flex;
+    align-items: end;
+    gap: 10px;
+}
+
+.logo-website img{
+    width: 100px;
+    height: 100px;
+}
+
+.title-header span{
+    font-size: 32px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.5px;
+    
+
+}
+
+.nav-links{
+    display: flex;
+    gap: 20px;
+    text-decoration: none;
+    color: white;
+    gap: 20px;
+    transform: translateX(-85px); /* geser 15px ke kiri */
+}
+.nav-links a{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* form styles */
+
+/* creative form styles (light theme) - keeps navbar/brand untouched */
+.form-request{
+    margin: 20px auto;
+    padding: 26px;
+    background: linear-gradient(180deg, #ffffff, #fbfbfd);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(29,41,54,0.06);
+    border: 1px solid rgba(3,11,24,0.04);
+    max-width: 900px;
+}
+.title-form-request{
+    display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-bottom:16px;padding-bottom:6px}
+.title-form-request h2{font-size:26px;margin:0;color:#072033}
+.title-form-request p{margin:0;color:#476172}
+
+/* form grid: 2 columns on wide, single column on small */
+form{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media (max-width:860px){form{grid-template-columns:1fr}}
+
+/* common field wrappers to match existing markup */
+.nama-pengirim, .badge-nomor, .category, .description, .document-supporting{
+    background:transparent;padding:6px;border-radius:10px}
+.description{grid-column:1 / -1}
+
+/* inputs */
+input[type="text"], select, textarea{
+    width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(7,32,50,0.08);background:#fff;color:#0b2b3a;outline:none;transition:box-shadow .15s,transform .12s;
+}
+input[type="text"]::placeholder, textarea::placeholder{color:#9fb0bb}
+input[type="text"]:focus, select:focus, textarea:focus{box-shadow:0 8px 20px rgba(7,32,50,0.06);transform:translateY(-2px);border-color:#60a5fa}
+
+/* textarea */
+textarea{min-height:120px;resize:vertical;padding-top:12px}
+
+/* select custom arrow (keeps native behavior but looks nicer) */
+select{appearance:none;padding-right:40px;background-image:linear-gradient(45deg,transparent 50%,rgba(0,0,0,0.25) 50%),linear-gradient(135deg,rgba(0,0,0,0.25) 50%,transparent 50%);background-position:calc(100% - 18px) calc(1em + 2px),calc(100% - 13px) calc(1em + 2px);background-size:6px 6px,6px 6px;background-repeat:no-repeat}
+
+/* file input: create a visible area and keep the native input hidden */
+input[type="file"]{display:none}
+.document-supporting{grid-column:1 / -1}
+.document-supporting .file-visual{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:14px;
+  padding:28px;
+  border-radius:18px;
+  border:2px dashed #007E7A;
+  background:linear-gradient(135deg,rgba(0,126,122,0.04),rgba(0,126,122,0.02));
+  box-shadow:0 8px 24px rgba(0,126,122,0.06);
+  cursor:pointer;
+  transition:all .2s ease;
+  min-height:160px;
+}
+.document-supporting .file-visual:hover{border-color:#006055;background:linear-gradient(135deg,rgba(0,126,122,0.08),rgba(0,126,122,0.05));box-shadow:0 12px 32px rgba(0,126,122,0.08)}
+
+.document-supporting .file-upload-icon{
+  width:48px;
+  height:48px;
+  background:linear-gradient(135deg,#007E7A,#005f5a);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:24px;
+}
+
+.document-supporting .file-upload-text{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.document-supporting .file-upload-text .primary{font-weight:700;color:#007E7A;font-size:15px}
+.document-supporting .file-upload-text .secondary{font-size:13px;color:#7a8896}
+.document-supporting .file-upload-text .file-size{font-size:12px;color:#a0aab8}
+
+.document-supporting .file-name{
+  color:#31535f;
+  font-size:14px;
+  font-weight:600;
+  margin-top:8px;
+}
+.document-supporting .file-name.file-error{color:var(--err)}
+.file-error-msg{color:var(--err);font-size:13px;margin-top:8px}
+
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* submit */
+.submit-button{grid-column:1 / -1;display:flex;justify-content:flex-end}
+button[type="submit"]{padding:12px 20px;border-radius:10px;border:0;background:linear-gradient(90deg,#60a5fa,#7ee3c8);color:#022033;font-weight:700;cursor:pointer;box-shadow:0 10px 24px rgba(96,165,250,0.12);transition:transform .12s}
+button[type="submit"]:hover{transform:translateY(-3px)}
+
+/* small helpers */
+.input-error{border-color:#ff6b6b!important}
+.input-success{border-color:#4ade80!important}
+
+/* subtle entrance */
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.form-request{animation:fadeUp .45s ease both}
+
+/* responsive tweaks */
+@media (max-width:520px){.nav-links{display:none}.title-form-request{align-items:center}.submit-button{justify-content:center}}
+
+/* end form styles */
+
+/* Footer - creative redesign with teal matching navbar (#007E7A) */
+.site-footer{background:linear-gradient(135deg,#007E7A 0%,#005f5a 100%);color:#fff;padding:0;margin-top:40px}
+
+.footer-content{
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 18px 20px;
+    align-items: flex-start;
+}
+
+.footer-logo {
+    flex-shrink: 0;
+}
+
+.footer-logo img {
+    display: block;
+    width: 100px;
+    height: auto;
+}
+
+.footer-sections-group {
+    flex-grow: 1;
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.footer-section{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex: 1;
+}
+
+.footer-about{gap:16px}
+.footer-about h3{margin:0;font-size:18px;color:#fff}
+.footer-about p{margin:0;font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5}
+
+.footer-section h4{margin:0;font-size:15px;color:#fff;font-weight:700}
+.footer-section ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.footer-section a{color:rgba(255,255,255,0.9);text-decoration:none;font-size:13px;transition:all .2s}
+.footer-section a:hover{color:#fff;transform:translateX(4px)}
+
+.support-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0}
+.support-icon{font-size:20px}
+.support-item strong{color:#fff;font-size:13px;display:block;margin-bottom:2px}
+.support-item p{margin:0;font-size:13px;color:rgba(255,255,255,0.85)}
+
+.footer-divider{height:1px;background:rgba(255,255,255,0.1);margin:0 18px}
+
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:0 auto;padding:16px 18px;font-size:13px;color:rgba(255,255,255,0.9)}
+.footer-bottom p{margin:0}
+.footer-legal{display:flex;gap:16px}
+.footer-legal a{color:rgba(255,255,255,0.85);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:#fff}
+
+@media (max-width:968px){
+    .footer-sections-group {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .footer-section {
+        text-align: left;
+    }
+}
+
+@media (max-width:768px){
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        padding: 30px 18px 16px;
+    }
+    .footer-sections-group {
+        width: 100%;
+    }
+    .footer-bottom{
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .footer-legal{
+        justify-content: center;
+    }
+}
