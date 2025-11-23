@@ -83,8 +83,25 @@ form{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 
 /* common field wrappers to match existing markup */
 .nama-pengirim, .badge-nomor, .category, .description, .document-supporting{
-    background:transparent;padding:6px;border-radius:10px}
+    background:transparent;padding:6px;border-radius:10px;transition:background 0.2s ease}
 .description{grid-column:1 / -1}
+
+/* Error state for form fields */
+.nama-pengirim.has-error, .badge-nomor.has-error, .category.has-error, .description.has-error, .document-supporting.has-error{
+    background:rgba(239, 68, 68, 0.04);
+    border-radius:10px;
+    padding:6px;
+}
+
+.nama-pengirim.has-error input, .badge-nomor.has-error input, .category.has-error select, .description.has-error textarea{
+    border-color:#ef4444 !important;
+    background:#fff5f5;
+}
+
+.document-supporting.has-error .file-visual{
+    border-color:#ef4444;
+    background:rgba(239, 68, 68, 0.02);
+}
 
 /* inputs */
 input[type="text"], select, textarea{

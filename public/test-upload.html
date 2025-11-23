@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload Test</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d1e7dd; color: #0f5132; }
+        .error { background: #fee; color: #c41e3a; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>🧪 File Upload Diagnostics</h1>
+    
+    <div class="status info">
+        <h3>Configuration Check:</h3>
+        <ul>
+            <li>Form method: POST</li>
+            <li>Form enctype: multipart/form-data</li>
+            <li>Max file size: 2MB</li>
+            <li>Allowed extensions: pdf, doc, docx, xls, xlsx, jpg, jpeg, png, txt, zip</li>
+            <li>Storage path: /storage/app/public/documents/</li>
+        </ul>
+    </div>
+
+    <div class="status info">
+        <h3>Browser Console Tips:</h3>
+        <ol>
+            <li>Open your browser's Developer Tools (F12 or Ctrl+Shift+I)</li>
+            <li>Go to the "Console" tab</li>
+            <li>You'll see debug messages when:</li>
+            <ul>
+                <li>File is selected</li>
+                <li>File size is checked</li>
+                <li>File type is validated</li>
+                <li>Form is submitted</li>
+            </ul>
+        </ol>
+    </div>
+
+    <div class="status info">
+        <h3>Test File Upload:</h3>
+        <p>Go to <a href="/" target="_blank">Home Page</a> and:</p>
+        <ol>
+            <li>Fill in all form fields:
+                <ul>
+                    <li>Request Name: any text</li>
+                    <li>Badge No: any number</li>
+                    <li>Category: select one</li>
+                    <li>Description: at least 10 characters</li>
+                </ul>
+            </li>
+            <li>Select or drag a file:
+                <ul>
+                    <li>Should be less than 2MB</li>
+                    <li>Supported format (pdf, txt, jpg, etc.)</li>
+                </ul>
+            </li>
+            <li>Click "Submit Request"</li>
+            <li>Watch browser console for debug messages</li>
+            <li>Check if success/error message appears</li>
+        </ol>
+    </div>
+
+    <div class="status error">
+        <h3>❌ If Upload Failed:</h3>
+        <p>Please provide these details:</p>
+        <ol>
+            <li>Screenshot of browser console errors (F12 > Console tab)</li>
+            <li>The error message shown on the page</li>
+            <li>File name and size you tried to upload</li>
+            <li>File format/type</li>
+        </ol>
+    </div>
+
+    <div class="status success">
+        <h3>✅ If Upload Succeeded:</h3>
+        <p>You should see:</p>
+        <ol>
+            <li>Green success message with checkmark animation</li>
+            <li>Form automatically reset after 2 seconds</li>
+            <li>Ability to upload another file</li>
+            <li>File appears in admin panel</li>
+        </ol>
+    </div>
+
+    <hr>
+    <p><small>Debug page created for troubleshooting file upload issues</small></p>
+</body>
+</html>

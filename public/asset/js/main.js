@@ -112,34 +112,34 @@
       container.appendChild(live);
     }
 
-    // update on change with client-side validation (max 10 MB)
-    const MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+    // update on change with client-side validation (max 2 MB)
+    const MAX_BYTES = 2 * 1024 * 1024; // 2 MB
     fileInput.addEventListener('change', function(){
       const f = fileInput.files && fileInput.files[0];
+      const nameSpan = document.querySelector('.document-supporting .file-name');
+      const errSpan = document.querySelector('.document-supporting .file-error-msg');
+      
       if(!f){
-        nameSpan.textContent = '';
-        errSpan.textContent = '';
-        live.textContent = '';
-        nameSpan.classList.remove('file-error');
-        primaryText.textContent = 'Click to upload or drag & drop';
+        if(nameSpan) nameSpan.textContent = '';
+        if(errSpan) errSpan.textContent = '';
         return;
       }
       if(f.size > MAX_BYTES){
         // too large
-        nameSpan.textContent = 'File too large (max 10 MB)';
-        errSpan.textContent = 'Selected file is too large. Maximum allowed size is 10 MB.';
-        nameSpan.classList.add('file-error');
-        primaryText.textContent = '❌ File too large';
+        if(nameSpan) {
+          nameSpan.textContent = 'File too large (max 2 MB)';
+          nameSpan.classList.add('file-error');
+        }
+        if(errSpan) errSpan.textContent = 'Selected file is too large. Maximum allowed size is 2 MB.';
         try{ fileInput.value = ''; }catch(e){}
-        live.textContent = 'Selected file is too large. Please choose a file smaller than ten megabytes.';
         return;
       }
       // good file
-      nameSpan.textContent = '✓ ' + f.name;
-      errSpan.textContent = '';
-      nameSpan.classList.remove('file-error');
-      primaryText.textContent = '✓ File selected';
-      live.textContent = 'File selected: ' + f.name;
+      if(nameSpan) {
+        nameSpan.textContent = '✓ ' + f.name;
+        nameSpan.classList.remove('file-error');
+      }
+      if(errSpan) errSpan.textContent = '';
     });
   }
 
