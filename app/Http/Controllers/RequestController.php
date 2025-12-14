@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Request as RequestModel;
+use App\Mail\NewRequestSubmitted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class RequestController extends Controller
 {
@@ -78,7 +80,7 @@ class RequestController extends Controller
             }
 
             // Simpan ke database
-            RequestModel::create([
+            $newRequest = RequestModel::create([
                 'nama' => $validated['nama'],
                 'nomor' => $validated['nomor'],
                 'category' => $validated['category'],
@@ -89,6 +91,17 @@ class RequestController extends Controller
             ]);
 
             Log::info('Request created successfully', ['nama' => $validated['nama']]);
+
+            // Send email notification to admin
+            try {
+                $adminEmail = 'plnintership@gmail.com'; // Admin email yang menerima notifikasi
+                Mail::to($adminEmail)->send(new NewRequestSubmitted($newRequest));
+                Log::info('Email notification sent', ['to' => $adminEmail, 'request_id' => $newRequest->id]);
+            } catch (\Exception $e) {
+                Log::error('Failed to send email notification: ' . $e->getMessage());
+                // Email gagal, tapi request tetap simpan dan return success
+            }
+
             return redirect()->back()->with('success', 'Request berhasil dikirim! Tim kami akan segera memproses permintaan Anda.');
         } catch (\Exception $e) {
             Log::error('Request upload error: ' . $e->getMessage(), ['exception' => $e]);

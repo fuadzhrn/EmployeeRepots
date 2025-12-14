@@ -1,0 +1,30 @@
+New Request Submitted
+======================
+
+A new request has been submitted and is waiting for your review.
+
+REQUEST DETAILS:
+----------------
+
+Request Name: {{ $request->nama }}
+Badge Number: {{ $request->nomor }}
+Category: {{ ucfirst(str_replace('_', ' ', $request->category)) }}
+Status: {{ ucfirst($request->status) }}
+Submitted Date: {{ $request->created_at->format('d/m/Y H:i:s') }}
+
+DESCRIPTION:
+{{ $request->description }}
+
+---
+
+ADMIN ACTIONS:
+To review and manage this request, please visit the Admin Dashboard:
+{{ $dashboardUrl }}
+
+---
+
+This is an automated notification from the Request Management System.
+Please do not reply to this email.
+
+PT VALE Indonesia
+Request Management System
